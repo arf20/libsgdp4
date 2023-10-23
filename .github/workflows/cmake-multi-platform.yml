@@ -35,4 +35,15 @@ jobs:
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target package
-      
+     
+    - name: Upload DEB artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-deb.zip
+        path: build/dist/*.deb
+    
+    - name: Upload TGZ artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-tgz.zip
+        path: build/dist/*.tar.gz
